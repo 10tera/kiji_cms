@@ -1,32 +1,20 @@
-import { Employee } from "../../domain/models/employees/model";
+import { getCloudflareContext } from "@opennextjs/cloudflare";
+import { createDb } from "../../../../db/index";
+import type { Employee } from "../../domain/models/employees/model";
 import type { IEmployeeRepository } from "../../domain/models/employees/repository";
 
 export class EmployeeRepository implements IEmployeeRepository {
+  private get db() {
+    const { env } = getCloudflareContext();
+    return createDb(env.DB);
+  }
+
   async findMany({
     siteId: _siteId,
     status: _status,
   }: Partial<Pick<Employee, "siteId" | "status">>) {
-    const employees = [
-      {
-        id: 1,
-        name: "Name",
-        siteId: 1,
-        joiningDate: new Date("2026-01-01"),
-        status: "active",
-        isNew: true,
-      },
-    ] as const satisfies Employee[];
-
-    // 取得したデータをエンティティに変換して返す
-    return employees.map((employee) => {
-      return new Employee(
-        employee.id,
-        employee.name,
-        employee.siteId,
-        employee.joiningDate,
-        employee.status,
-      );
-    });
+    // TODO: implement using this.db
+    return [];
   }
 
   async update(_employee: Employee): Promise<void> {}

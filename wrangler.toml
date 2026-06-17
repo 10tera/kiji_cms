@@ -1,0 +1,10 @@
+name = "kiji-cms"
+compatibility_date = "2025-01-01"
+compatibility_flags = ["nodejs_compat"]
+pages_build_output_dir = "frontend/.open-next/assets"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "kiji-cms"
+database_id = "placeholder" # `wrangler d1 create kiji-cms` 後に置き換える
+migrations_dir = "drizzle/migrations"

@@ -10,10 +10,16 @@
   "scripts": {
     "dev": "cd frontend && next dev",
     "build": "cd frontend && next build",
+    "cf:build": "cd frontend && next build && opennextjs-cloudflare build",
+    "cf:preview": "cd frontend && opennextjs-cloudflare preview",
+    "cf:deploy": "cd frontend && opennextjs-cloudflare deploy",
     "start": "cd frontend && next start",
-    "backend:dev": "pnpm --filter backend dev",
-    "backend:build": "pnpm --filter backend build",
-    "backend:deploy": "pnpm --filter backend deploy",
+    "backend:dev": "cd backend && vite",
+    "backend:build": "cd backend && vite build",
+    "backend:deploy": "cd backend && wrangler deploy",
+    "db:generate": "drizzle-kit generate",
+    "db:studio": "drizzle-kit studio",
+    "cf:types": "wrangler types",
     "lint": "biome lint",
     "format": "biome format --write",
     "check": "biome check",
@@ -24,20 +30,30 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@hono/zod-validator": "^0.8.0",
+    "drizzle-orm": "^0.45.2",
+    "hono": "^4.12.25",
     "next": "16.2.6",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@biomejs/biome": "2.4.15",
+    "@cloudflare/vite-plugin": "^1.41.0",
+    "@cloudflare/workers-types": "^4.20260617.1",
+    "@opennextjs/cloudflare": "^1.19.11",
     "@storybook/addon-a11y": "^10.3.6",
     "@storybook/addon-docs": "^10.3.6",
     "@storybook/nextjs-vite": "^10.3.6",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "drizzle-kit": "^0.31.10",
     "lefthook": "2.1.6",
     "storybook": "^10.3.6",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vite": "^8.0.16",
+    "wrangler": "^4.101.0"
   }
 }
