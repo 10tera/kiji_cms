@@ -10,6 +10,8 @@
     "includes": [
       "frontend/src/**",
       "frontend/next.config.ts",
+      "backend/src/**",
+      "backend/vite.config.ts",
       "*.json",
       "*.ts",
       "!node_modules",
